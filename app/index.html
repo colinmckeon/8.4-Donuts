@@ -14,9 +14,13 @@
         <div class="col-md-6 col-md-offset-3">
 
           <div class="form-container">
+              <h4>Basic Info</h4>
+              <hr>
               <div class="author-container">
                   <input class="form-control" id="recipe-name" type="text" placeholder="Enter Recipe Name">
+                  <br>
                   <input class="form-control" id="author-name" type="text" placeholder="Author's Name">
+                  <br>
               </div>
               <div class="cook-time-container">
                   <label for="prep-time">Prep Time</label>
@@ -25,6 +29,26 @@
                   <input id="cook-time" type="text" placeholder="Hours/Minutes">
                   <label for="cook-temp">Cook Temp</label>
                   <input id="cook-temp" type="text" placeholder="°F">
+              </div>
+              <br>
+              <h4>Recipe Steps</h4>
+              <hr>
+              <div class="steps-container">
+                  <label for="ingredient-amount">Amount</label>
+                  <input id="ingredient-amount" type="text" placeholder="Enter Number">
+                  <label for="unit-input">Unit</label>
+                  <input id="unit-input" type="text" placeholder="ex: Tbsp">
+                  <label for="ingredient-input">Ingredient</label>
+                  <input id="ingredient-input" type="text" placeholder="ex: Avocado">
+                  <button id="add-ingredient" type="button" class="btn btn-secondary">+</button>
+                  <button id="remove-ingredient" type="button" class="btn btn-secondary">-</button>
+                  <br>
+                  <textarea id="step-directions" name="textarea" rows="8" placeholder="What directions go with this step?"></textarea>
+                  <button type="button" class="btn btn-info">Add Additional Step</button>
+                  <hr>
+              </div>
+              <div class="recipe-save-container">
+                  <input class="btn btn-success" id="save-recipe-button" type="submit" value="Save this Recipe!">
               </div>
           </div>
 
