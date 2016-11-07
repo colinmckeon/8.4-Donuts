@@ -5,14 +5,16 @@ var RecipeForm = React.createClass({
     render: function(){
         return (
           <div className="form-container">
-              <h4>Basic Info</h4>
+              <h3>Basic Info</h3>
               <hr />
+
               <div className="author-container">
                   <input className="form-control" id="recipe-name" type="text" placeholder="Enter Recipe Name" />
                   <br />
                   <input className="form-control" id="author-name" type="text" placeholder="Author's Name" />
                   <br />
               </div>
+
               <div className="cook-time-container">
                   <label htmlFor="prep-time">Prep Time</label>
                   <input id="prep-time" type="text" placeholder="Hours/Minutes" />
@@ -20,11 +22,18 @@ var RecipeForm = React.createClass({
                   <input id="cook-time" type="text" placeholder="Hours/Minutes" />
                   <label htmlFor="cook-temp">Cook Temp</label>
                   <input id="cook-temp" type="text" placeholder="°F" />
+                  <hr />
+                  <span>The final product will make</span> &nbsp;
+                  <input id="recipe-willmake" type="text" placeholder="Enter Number" /> &nbsp;
+                  <input id="recipe-output" type="text" placeholder="cookies, loaves, etc..." />
               </div>
+
               <br />
-              <h4>Recipe Steps</h4>
+              <h3>Recipe Steps</h3>
               <hr />
-              <div className="steps-container">
+
+              <div className="steps-container well">
+                  <h4>Input Ingredients for this step</h4>
                   <label htmlFor="ingredient-amount">Amount</label>
                   <input id="ingredient-amount" type="text" placeholder="Enter Number" />
                   <label htmlFor="unit-input">Unit</label>
@@ -33,11 +42,12 @@ var RecipeForm = React.createClass({
                   <input id="ingredient-input" type="text" placeholder="ex: Avocado" />
                   <button id="add-ingredient" type="button" className="btn btn-secondary">+</button>
                   <button id="remove-ingredient" type="button" className="btn btn-secondary">-</button>
-                  <br />
-                  <textarea id="step-directions" name="textarea" rows="8" placeholder="What directions go with this step?"></textarea>
-                  <button type="button" className="btn btn-info">Add Additional Step</button>
                   <hr />
+                  <textarea id="step-directions" name="textarea" rows="8" placeholder="What directions go with this step?"></textarea>
+                  <hr />
+                  <button type="button" className="btn btn-info">Add Additional Step</button>
               </div>
+              
               <div className="recipe-save-container">
                   <input className="btn btn-success" id="save-recipe-button" type="submit" value="Save this Recipe!" />
               </div>
