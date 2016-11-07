@@ -40,6 +40,12 @@ var recipeItems = [{
     quantity: .5
 }];
 
+var recipe = {
+  name: 'Guacamole',
+  servings: 4
+}
+
 module.exports = {
-  recipeItems: recipeItems
+  recipeItems: recipeItems,
+  recipe: recipe
 };

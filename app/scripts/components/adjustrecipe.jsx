@@ -3,6 +3,7 @@ var Backbone = require('backbone');
 
 //Local Data being brought in
 var recipeItems = require('../data/data.js').recipeItems;
+var recipe = require('../data/data.js').recipe;
 
 var AdjustRecipe = React.createClass({
     render: function(){
@@ -35,6 +36,8 @@ var AdjustRecipe = React.createClass({
                       <input className="btn btn-info" type="submit" value="Adjust Recipe" />
                   </div>
               </div>
+              <h4>{this.props.recipe.name}</h4>
+              <h4>Servings: {this.props.recipe.servings}</h4>
               <br/>
               {recipeHtml}
           </div>
@@ -45,7 +48,8 @@ var AdjustRecipe = React.createClass({
 var AdjustRecipeContainer = React.createClass({
     getInitialState: function(){
         return{
-          recipe: recipeItems
+          ingredients: recipeItems,
+          recipe: recipe
         }
     },
     render: function(){
@@ -55,7 +59,7 @@ var AdjustRecipeContainer = React.createClass({
               <div className="col-md-6 col-md-offset-3">
                 <div className="recipe-container">
 
-                    <AdjustRecipe recipeList={this.state.recipe} />
+                    <AdjustRecipe recipeList={this.state.ingredients} recipe={this.state.recipe}/>
 
                 </div>
               </div>
