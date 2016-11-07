@@ -3,7 +3,10 @@ var React =  require('react');
 var ReactDOM = require('react-dom');
 var Backbone =  require('backbone');
 
+//LOCAL REQUIRE
 var LoginContainer = require('./components/login.jsx').LoginContainer;
+var AdjustRecipeContainer = require('./components/adjustrecipe.jsx').AdjustRecipeContainer;
+
 
 var AppRouter = Backbone.Router.extend({
     routes: {
@@ -11,7 +14,7 @@ var AppRouter = Backbone.Router.extend({
     },
     login: function(){
         ReactDOM.render(
-          React.createElement(LoginContainer),
+          React.createElement(AdjustRecipeContainer),
           document.getElementById('app')
         );
     }

@@ -1,42 +1,42 @@
 var recipeItems = [{
     id: '01',
     title: 'Avocado',
-    measurement-type: 'ripe',
+    measurementtype: 'ripe',
     quantity: 2
   }, {
     id: '02',
     title: 'Kosher salt',
-    measurement-type: 'teaspoon',
+    measurementtype: 'teaspoon',
     quantity: .5
   }, {
     id: '03',
     title: 'Lime juice',
-    measurement-type: 'Tbsp',
+    measurementtype: 'Tbsp',
     quantity: 1
   }, {
     id: '04',
     title: 'minced red onion',
-    measurement-type: 'cup',
+    measurementtype: 'cups',
     quantity: .25
   }, {
     id: '05',
     title: 'serrano chiles',
-    measurement-type: '',
+    measurementtype: '',
     quantity: 2
   }, {
     id: '06',
     title: 'cilantro',
-    measurement-type: 'Tbsp',
+    measurementtype: 'Tbsp',
     quantity: 2
   }, {
     id: '07',
     title: 'black pepper',
-    measurement-type: 'dash',
-    quantity:
+    measurementtype: 'dash',
+    quantity: 1
   }, {
     id: '08',
     title: 'tomato',
-    measurement-type: 'ripe',
+    measurementtype: 'ripe',
     quantity: .5
 }];
 
