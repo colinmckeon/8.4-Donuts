@@ -20,9 +20,19 @@ img {
 //
 //RECIPE QTY SCREEN
 //
+.adjustrecipe-header{
+  border: 1px dotted gray;
+  text-align: center;
+}
 .servings{
-  display: inline-block;
+  float: left;
 }
 #servings-input{
   width: 30px;
+}
+.radio-button-container{
+  display: inline-block;
+}
+.adjustrecipe-button-container{
+  float: right;
 }
