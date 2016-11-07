@@ -8,24 +8,26 @@ var RecipeForm = React.createClass({
               <h3>Basic Info</h3>
               <hr />
 
-              <div className="author-container">
-                  <input className="form-control" id="recipe-name" type="text" placeholder="Enter Recipe Name" />
-                  <br />
-                  <input className="form-control" id="author-name" type="text" placeholder="Author's Name" />
-                  <br />
-              </div>
+              <div className="well">
+                <div className="author-container">
+                    <input className="form-control" id="recipe-name" type="text" placeholder="Enter Recipe Name" />
+                    <br />
+                    <input className="form-control" id="author-name" type="text" placeholder="Author's Name" />
+                    <br />
+                </div>
 
-              <div className="cook-time-container">
-                  <label htmlFor="prep-time">Prep Time</label>
-                  <input id="prep-time" type="text" placeholder="Hours/Minutes" />
-                  <label htmlFor="cook-time">Cook Time</label>
-                  <input id="cook-time" type="text" placeholder="Hours/Minutes" />
-                  <label htmlFor="cook-temp">Cook Temp</label>
-                  <input id="cook-temp" type="text" placeholder="°F" />
-                  <hr />
-                  <span>The final product will make</span> &nbsp;
-                  <input id="recipe-willmake" type="text" placeholder="Enter Number" /> &nbsp;
-                  <input id="recipe-output" type="text" placeholder="cookies, loaves, etc..." />
+                <div className="cook-time-container">
+                    <label htmlFor="prep-time">Prep Time</label>
+                    <input id="prep-time" type="text" placeholder="Hours/Minutes" />
+                    <label htmlFor="cook-time">Cook Time</label>
+                    <input id="cook-time" type="text" placeholder="Hours/Minutes" />
+                    <label htmlFor="cook-temp">Cook Temp</label>
+                    <input id="cook-temp" type="text" placeholder="°F" />
+                    <hr />
+                    <span>The final product will make</span> &nbsp;
+                    <input id="recipe-willmake" type="text" placeholder="Enter Number" /> &nbsp;
+                    <input id="recipe-output" type="text" placeholder="cookies, loaves, etc..." />
+                </div>
               </div>
 
               <br />
@@ -47,7 +49,7 @@ var RecipeForm = React.createClass({
                   <hr />
                   <button type="button" className="btn btn-info">Add Additional Step</button>
               </div>
-              
+
               <div className="recipe-save-container">
                   <input className="btn btn-success" id="save-recipe-button" type="submit" value="Save this Recipe!" />
               </div>

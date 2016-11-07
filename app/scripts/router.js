@@ -11,11 +11,12 @@ var RecipeFormContainer = require('./components/recipeform.jsx').RecipeFormConta
 
 var AppRouter = Backbone.Router.extend({
     routes: {
-      '': 'login'
+      '': 'login',
+      
     },
     login: function(){
         ReactDOM.render(
-          React.createElement(RecipeFormContainer),
+          React.createElement(AdjustRecipeContainer),
           document.getElementById('app')
         );
     }
