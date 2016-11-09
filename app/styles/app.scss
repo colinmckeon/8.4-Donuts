@@ -36,6 +36,14 @@ img {
 .adjustrecipe-button-container{
   float: right;
 }
+#title-recipe{
+  display: inline-block;
+  font-weight: bold;
+  text-decoration: underline;
+}
+#servings-recipe{
+  display: inline-block;
+}
 
 //
 //RECIPE FORM SCREEN

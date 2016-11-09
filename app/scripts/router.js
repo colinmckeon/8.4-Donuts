@@ -4,6 +4,7 @@ var ReactDOM = require('react-dom');
 var Backbone =  require('backbone');
 
 //LOCAL REQUIRE
+var setupParse = require('./parseUtilities').setupParse;
 var LoginContainer = require('./components/login.jsx').LoginContainer;
 var AdjustRecipeContainer = require('./components/adjustrecipe.jsx').AdjustRecipeContainer;
 var RecipeFormContainer = require('./components/recipeform.jsx').RecipeFormContainer;
@@ -13,14 +14,19 @@ var AppRouter = Backbone.Router.extend({
     routes: {
       '': 'login',
       'addRecipe/': 'addRecipe'
-
     },
+    
+    initialize: function(){
+      setupParse('overwatch', 'harambe');
+    },
+
     login: function(){
         ReactDOM.render(
           React.createElement(AdjustRecipeContainer),
           document.getElementById('app')
         );
     },
+
     addRecipe: function(){
         ReactDOM.render(
           React.createElement(RecipeFormContainer),

@@ -6,6 +6,15 @@ var recipeItems = require('../data/data.js').recipeItems;
 var recipe = require('../data/data.js').recipe;
 
 var AdjustRecipe = React.createClass({
+    getInitialState: function(){
+      return{
+        qty: 1
+      };
+    },
+    handleQty: function(e){
+      this.setState({qty: e.target.value});
+      this.props.adjustQtys(e.target.value);
+    },
     render: function(){
 
       var recipeHtml = this.props.recipeList.map(function(item, index){
@@ -25,7 +34,7 @@ var AdjustRecipe = React.createClass({
               <div className="adjustrecipe-header">
                   <div className="servings">
                       <span>Makes</span>
-                      <input id="servings-input" name="servings-input" placeholder="Qty" />
+                      <input onChange={this.handleQty} id="servings-input" type="text" name="servings-input" placeholder="Qty" />
                       <span>servings.</span>
                   </div>
                   <div className="radio-button-container">
@@ -36,9 +45,14 @@ var AdjustRecipe = React.createClass({
                       <input className="btn btn-info" type="submit" value="Adjust Recipe" />
                   </div>
               </div>
-              <h4>{this.props.recipe.name}</h4>
-              <h4>Servings: {this.props.recipe.servings}</h4>
+
+              <br />
+
+              <div>
+              <h4 id="title-recipe">{this.props.recipe.name}</h4> &nbsp;
+              <h5 id="servings-recipe">Servings: {this.props.recipe.servings}</h5>
               <br/>
+              </div>
               {recipeHtml}
           </div>
         )
@@ -52,6 +66,9 @@ var AdjustRecipeContainer = React.createClass({
           recipe: recipe
         }
     },
+    adjustQtys: function(){
+        
+    },
     render: function(){
         return(
           <div className="container">
@@ -59,7 +76,11 @@ var AdjustRecipeContainer = React.createClass({
               <div className="col-md-6 col-md-offset-3">
                 <div className="recipe-container">
 
-                    <AdjustRecipe recipeList={this.state.ingredients} recipe={this.state.recipe}/>
+                    <AdjustRecipe
+                      recipeList={this.state.ingredients}
+                      recipe={this.state.recipe}
+                      adjustQtys={this.adjustQtys}
+                      />
 
                 </div>
               </div>
