@@ -8,16 +8,25 @@ var recipe = require('../data/data.js').recipe;
 var AdjustRecipe = React.createClass({
     getInitialState: function(){
       return{
-        qty: 1
+        servings: this.props.servings
       };
     },
-    handleQty: function(e){
-      this.setState({qty: e.target.value});
-      this.props.adjustQtys(e.target.value);
+    adjustServings: function(e){
+      this.state.servings = e.target.value;
+    },
+
+    adjustRecipe: function(e){
+      e.preventDefault();
+      var factor = this.state.servings / this.props.servings;
+      var servings = this.state.servings;
+      var ingredientsList = this.props.ingredientsList.map(function(ingredient){
+          ingredient.quantity = ingredient.quantity * factor
+          return ingredient;
+      });
+      this.props.adjustRecipe(ingredientsList, servings);
     },
     render: function(){
-
-      var recipeHtml = this.props.recipeList.map(function(item, index){
+      var recipeHtml = this.props.ingredientsList.map(function(item, index){
         return (
           <div className="recipe-items" key={item.id + index}>
                 <label><input type="checkbox" />&nbsp;
@@ -34,7 +43,7 @@ var AdjustRecipe = React.createClass({
               <div className="adjustrecipe-header">
                   <div className="servings">
                       <span>Makes</span>
-                      <input onChange={this.handleQty} id="servings-input" type="text" name="servings-input" placeholder="Qty" />
+                      <input onChange={this.adjustServings} id="servings-input" type="text" name="servings-input" placeholder={this.props.recipe.servings}/>
                       <span>servings.</span>
                   </div>
                   <div className="radio-button-container">
@@ -42,7 +51,7 @@ var AdjustRecipe = React.createClass({
                       <input type="radio" value="US" /> Metric
                   </div>
                   <div className="adjustrecipe-button-container">
-                      <input className="btn btn-info" type="submit" value="Adjust Recipe" />
+                      <input onClick={this.adjustRecipe} className="btn btn-info" type="submit" value="Adjust Recipe" />
                   </div>
               </div>
 
@@ -50,7 +59,7 @@ var AdjustRecipe = React.createClass({
 
               <div>
               <h4 id="title-recipe">{this.props.recipe.name}</h4> &nbsp;
-              <h5 id="servings-recipe">Servings: {this.props.recipe.servings}</h5>
+              <h5 id="servings-recipe">Initial Servings: {this.props.recipe.servings}</h5>
               <br/>
               </div>
               {recipeHtml}
@@ -66,10 +75,13 @@ var AdjustRecipeContainer = React.createClass({
           recipe: recipe
         }
     },
-    adjustQtys: function(){
-        
+    adjustRecipe: function(ingredients, servings){
+      var recipe = this.state.recipe;
+      recipe.servings = Number(servings);
+      this.setState({recipe: recipe});
     },
     render: function(){
+      console.log('re-render');
         return(
           <div className="container">
             <div className="row">
@@ -77,9 +89,10 @@ var AdjustRecipeContainer = React.createClass({
                 <div className="recipe-container">
 
                     <AdjustRecipe
-                      recipeList={this.state.ingredients}
+                      servings={this.state.recipe.servings}
+                      ingredientsList={this.state.ingredients}
                       recipe={this.state.recipe}
-                      adjustQtys={this.adjustQtys}
+                      adjustRecipe={this.adjustRecipe}
                       />
 
                 </div>
