@@ -54,6 +54,9 @@ var AdjustRecipe = React.createClass({
                       <input onClick={this.adjustRecipe} className="btn btn-info" type="submit" value="Adjust Recipe" />
                   </div>
               </div>
+              <div className="adjustRecipe-backButtonContainer">
+
+              </div>
 
               <br />
 

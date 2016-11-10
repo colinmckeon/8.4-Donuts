@@ -26,9 +26,9 @@ var Recipe = ParseModel.extend({
 
 var RecipeCollection = ParseCollection.extend({
     model: Recipe,
-    url: ''
+    url: 'https://colinmck.herokuapp.com/classes/Recipe'
 });
 
 module.exports = {
-
+    RecipeCollection: RecipeCollection
 };

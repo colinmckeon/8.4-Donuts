@@ -15,14 +15,14 @@ var AppRouter = Backbone.Router.extend({
       '': 'login',
       'addRecipe/': 'addRecipe'
     },
-    
+
     initialize: function(){
       setupParse('overwatch', 'harambe');
     },
 
     login: function(){
         ReactDOM.render(
-          React.createElement(AdjustRecipeContainer),
+          React.createElement(RecipeFormContainer),
           document.getElementById('app')
         );
     },
