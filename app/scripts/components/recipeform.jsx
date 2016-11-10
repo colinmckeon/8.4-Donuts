@@ -5,27 +5,31 @@ var RecipeCollection = require('../models/recipe.js').RecipeCollection;
 
 var RecipeForm = React.createClass({
     getInitialState: function(){
-        return {}
+        return {
+          collection: this.props.recipe.toJSON()
+        };
     },
     submitRecipe: function(e){
       e.preventDefault();
-      var recipe = {
-        name: 'myname',
-        title: 'me'
-      }
-      console.log(recipe);
-      this.props.submitRecipe(recipe);
-    },
-    handleInputChange: function(){
 
+      this.props.submitRecipe(this.state.collection);
+    },
+    handleInputChange: function(e){
+      var target = e.target;
+      var newRecipe = {};
+      newRecipe[target.name] = target.value;
+      this.setState({collection: newRecipe});
+      console.log(this.state.collection);
+      console.log(newRecipe);
     },
     render: function(){
         return (
           <div className="form-container">
               <h3>Basic Info</h3>
               <hr />
-
+              <form onSubmit={this.submitRecipe}>
               <div className="well">
+
                 <div className="author-container">
                     <input onChange={this.handleInputChange} id="recipe-name" className="form-control" type="text" name="name" value={this.state.name} placeholder="Enter Recipe Name" />
                     <br />
@@ -68,8 +72,9 @@ var RecipeForm = React.createClass({
               </div>
 
               <div className="recipe-save-container">
-                  <button onSubmit={this.submitRecipe} className="btn btn-success" id="save-recipe-button" type="submit">Save this Recipe!</button>
+                  <button className="btn btn-success" id="save-recipe-button" type="submit">Save this Recipe!</button>
               </div>
+              </form>
           </div>
 
 
@@ -85,7 +90,6 @@ var RecipeFormContainer = React.createClass({
   },
   submitRecipe: function(recipe){
     this.state.recipeCollection.create(recipe);
-    console.log('something');
   },
     render: function(){
         return (
@@ -93,7 +97,7 @@ var RecipeFormContainer = React.createClass({
             <div className="row">
               <div className="col-md-6 col-md-offset-3">
 
-                  <RecipeForm submitRecipe={this.submitRecipe} />
+                  <RecipeForm submitRecipe={this.submitRecipe} recipe={this.state.recipeCollection} />
 
               </div>
             </div>
