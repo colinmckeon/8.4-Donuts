@@ -1,10 +1,17 @@
 var React = require('react');
 var Backbone = require('backbone');
 
+var User = require('../models/users.js').User;
+
 var CurrentUserLogin = React.createClass({
+    getInitialState: function(){
+      return {
+        username: '',
+        password: '',
+      };
+    },
     render: function(){
         return (
-
             <div className="col-md-6">
               <h2>Login Here!</h2>
               <form id="login">
@@ -18,7 +25,7 @@ var CurrentUserLogin = React.createClass({
                   <input className="form-control" name="password" id="password-login" type="password" placeholder="Password Please" />
                 </div>
 
-                <input className="btn btn-primary" type="submit" value="Let the Recipes Begin!" />
+                <button className="btn btn-primary" type="submit">Let the Recipes Begin!</button>
               </form>
             </div>
 
@@ -28,24 +35,44 @@ var CurrentUserLogin = React.createClass({
 
 
 var NewUserCreate = React.createClass({
+    getInitialState: function(){
+      return {
+        username: '',
+        password: '',
+      };
+    },
+    handleSignUp: function(e){
+      e.preventDefault();
+      var username = this.state.username;
+      var password = this.state.password;
+
+      this.props.handleSignUp(username, password);
+      this.setState({username: '', password: ''});
+    },
+    handleEmail: function(e){
+      this.setState({username: e.target.value});
+    },
+    handlePassword: function(e){
+      this.setState({password: e.target.value});
+    },
     render: function(){
         return (
 
             <div className="col-md-6">
               <h2>Need an Account? Sign Up!</h2>
-              <form id="signup">
+              <form onSubmit={this.handleSignUp} id="signup">
 
                 <div className="form-group">
                   <label forHTML="email">Email address</label>
-                  <input className="form-control" name="email" id="email" type="email" placeholder="email" />
+                  <input onChange={this.handleEmail} value={this.state.username} className="form-control" name="email" id="email" type="email" placeholder="email" />
                 </div>
 
                 <div className="form-group">
                   <label forHTML="password">Password</label>
-                  <input className="form-control" name="password" id="password" type="password" placeholder="Password Please" />
+                  <input onChange={this.handlePassword} value={this.state.password} className="form-control" name="password" id="password" type="password" placeholder="Password Please" />
                 </div>
 
-                <input className="btn btn-primary" type="submit" value="Create an Account" />
+                <button className="btn btn-primary" type="submit">Create an Account</button>
               </form>
             </div>
 
@@ -53,15 +80,41 @@ var NewUserCreate = React.createClass({
     }
 });
 
+function setHeaders(sessionId){
+  $.ajaxSetup({
+    beforeSend: function(xhr){
+      xhr.setRequestHeader("X-Parse-Application-Id", "overwatch");
+      xhr.setRequestHeader("X-Parse-REST-API-Key", "harambe");
+      if(sessionId){
+        xhr.setRequestHeader("X-Parse-Session-Token", sessionId);
+      }
+    }
+  });
+}
 
 var LoginContainer = React.createClass({
+    getInitialState: function(){
+      return {
+        user: new User()
+      }
+    },
+    handleLogin: function(){
+
+    },
+    handleSignUp: function(username, password){
+      this.state.user.set({username: username, password: password});
+      this.state.user.signUp();
+
+      var sessionId = localStorage.getItem('sessionId');
+      setHeaders(sessionId);
+    },
     render: function(){
         return (
           <div className="container">
             <div className="row">
 
-              <CurrentUserLogin />
-              <NewUserCreate />
+              <CurrentUserLogin handleLogin={this.handleLogin} />
+              <NewUserCreate handleSignUp={this.handleSignUp} />
 
             </div>
           </div>
