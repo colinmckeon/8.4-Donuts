@@ -25,6 +25,10 @@ var AdjustRecipe = React.createClass({
       });
       this.props.adjustRecipe(ingredientsList, servings);
     },
+    goBackButton: function(e){
+      e.preventDefault();
+      this.props.router.navigate('recipes/', {trigger: true});
+    },
     render: function(){
       var recipeHtml = this.props.ingredientsList.map(function(item, index){
         return (
@@ -64,6 +68,9 @@ var AdjustRecipe = React.createClass({
               <br/>
               </div>
               {recipeHtml}
+              <div>
+                <button onClick={this.goBackButton} className="btn btn-success" type="button">Go Back</button>
+              </div>
           </div>
         )
     }
@@ -103,6 +110,7 @@ var AdjustRecipeContainer = React.createClass({
                       ingredientsList={this.state.recipe.get('ingredients')}
                       recipe={this.state.recipe}
                       adjustRecipe={this.adjustRecipe}
+                      router={this.props.router}
                       />
 
                 </div>

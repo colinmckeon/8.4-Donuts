@@ -44,9 +44,9 @@ var AppRouter = Backbone.Router.extend({
         );
     },
 
-    adjustRecipe: function(id){
+    adjustRecipe: function(id, router){
         ReactDOM.render(
-          React.createElement(AdjustRecipeContainer, {objectId: id}),
+          React.createElement(AdjustRecipeContainer, {objectId: id, router: this}),
           document.getElementById('app')
         );
     }

@@ -4,12 +4,15 @@ var RecipeCollection = require('../models/recipe.js').RecipeCollection;
 
 
 var ListItem = React.createClass({
+    handleEdit: function(e){
+      e.preventDefault();
+    },
     render: function(){
       var recipe = this.props.recipe;
       return(
         <div>
           <a href={'#recipes/' + recipe.get('objectId') + '/'} className="list-group-item">{recipe.get('title')}</a>
-          <button className="btn btn-success" type="submit">Edit Recipe</button>
+          <button onClick={this.handleEdit} className="btn btn-success" type="button">Edit Recipe</button>
           <hr />
         </div>
       );

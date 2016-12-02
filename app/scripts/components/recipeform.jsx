@@ -17,19 +17,21 @@ var RecipeForm = React.createClass({
     handleInputChange: function(e){
       var target = e.target;
       var newRecipe = {};
+
       newRecipe[target.name] = target.value;
       this.setState({collection: newRecipe});
-      console.log(this.state.collection);
-      console.log(newRecipe);
+
+      
     },
-    backToRecipes: function(){
+    backToRecipes: function(e){
+      e.preventDefault();
       this.props.router.navigate('recipes/', {trigger: true});
     },
     render: function(){
         return (
           <div className="form-container">
               <h3 id="basicInfoTitle">Basic Info</h3>
-              <button onClick={this.backToRecipes} className="btn btn-info backToRecipesButton" type="submit">Go Back To Recipes</button>
+              <button onClick={this.backToRecipes} className="btn btn-info backToRecipesButton" type="button">Go Back To Recipes</button>
               <hr />
               <form onSubmit={this.submitRecipe}>
               <div className="well">
