@@ -16,7 +16,8 @@ var AppRouter = Backbone.Router.extend({
       '': 'login',
       'recipes/': 'recipeList',
       'recipes/add/': 'addRecipe',
-      'recipes/:id/': 'adjustRecipe'
+      'recipes/:id/': 'adjustRecipe',
+      'recipes/:id/edit': ''
     },
 
     initialize: function(){
