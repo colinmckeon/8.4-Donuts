@@ -32,8 +32,8 @@ var AdjustRecipe = React.createClass({
     render: function(){
       var recipeHtml = this.props.ingredientsList.map(function(item, index){
         return (
-          <div className="recipe-items">
-                <label key={item.id + index}><input type="checkbox" />&nbsp;
+          <div key={item.cid} className="recipe-items">
+                <label><input type="checkbox" />&nbsp;
                   {item.get('quantity')} &nbsp;
                   {item.get('measurementtype')} &nbsp;
                   {item.get('title')}

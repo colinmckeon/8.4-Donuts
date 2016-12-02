@@ -2,7 +2,13 @@ var Backbone = require('backbone');
 
 
 var ParseModel = Backbone.Model.extend({
-  idAttribute: 'objectId'
+  idAttribute: 'objectId',
+  save: function(key, val, options){
+   delete this.attributes.createdAt;
+   delete this.attributes.updatedAt;
+
+   return Backbone.Model.prototype.save.apply(this, arguments);
+ },
 });
 
 var ParseCollection = Backbone.Collection.extend({
@@ -39,7 +45,7 @@ var Recipe = ParseModel.extend({
     this.set('ingredients', this.get('ingredients').toJSON());
 
     return ParseModel.prototype.save.apply(this, arguments);
-  },
+  }
 });
 
 var RecipeCollection = ParseCollection.extend({
