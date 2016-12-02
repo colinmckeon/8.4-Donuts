@@ -63,8 +63,6 @@ var RecipeForm = React.createClass({
                   <input onChange={this.handleInputChange} id="unit-input" type="text" name="measurementtype" value={this.state.measurementtype} placeholder="ex: Tbsp" />
                   <label htmlFor="ingredient-input">Ingredient</label>
                   <input onChange={this.handleInputChange} id="ingredient-input" type="text" name="title" value={this.state.title} placeholder="ex: Avocado" />
-                  <button id="add-ingredient" type="button" className="btn btn-secondary">+</button>
-                  <button id="remove-ingredient" type="button" className="btn btn-secondary">-</button>
                   <hr />
                   <textarea onChange={this.handleInputChange} id="step-directions" name="textarea" rows="8" name="directions" value={this.state.directions} placeholder="What directions go with this step?"></textarea>
                   <hr />
@@ -97,6 +95,7 @@ var RecipeFormContainer = React.createClass({
             <div className="row">
               <div className="col-md-6 col-md-offset-3">
 
+                
                   <RecipeForm submitRecipe={this.submitRecipe} recipe={this.state.recipeCollection} />
 
               </div>
