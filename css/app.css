@@ -5766,6 +5766,13 @@ button.close {
 img {
   max-width: 100%; }
 
+#recipeListTitle {
+  display: inline-block; }
+
+.addNewRecipeButton {
+  float: right;
+  margin-top: 26px; }
+
 .adjustrecipe-header {
   border: 1px dotted gray;
   text-align: center; }
@@ -5789,6 +5796,13 @@ img {
 
 #servings-recipe {
   display: inline-block; }
+
+#basicInfoTitle {
+  display: inline-block; }
+
+.backToRecipesButton {
+  float: right;
+  margin-top: 20px; }
 
 .cook-time-container {
   text-align: center; }
