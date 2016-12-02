@@ -8,6 +8,7 @@ var setupParse = require('./parseUtilities').setupParse;
 var LoginContainer = require('./components/login.jsx').LoginContainer;
 var AdjustRecipeContainer = require('./components/adjustrecipe.jsx').AdjustRecipeContainer;
 var RecipeFormContainer = require('./components/recipeform.jsx').RecipeFormContainer;
+var RecipeContainer = require('./components/recipeList.jsx').RecipeContainer;
 
 
 var AppRouter = Backbone.Router.extend({
@@ -24,7 +25,14 @@ var AppRouter = Backbone.Router.extend({
 
     login: function(){
         ReactDOM.render(
-          React.createElement(LoginContainer),
+          React.createElement(LoginContainer, {router: this}),
+          document.getElementById('app')
+        );
+    },
+
+    recipeList: function(){
+        ReactDOM.render(
+          React.createElement(RecipeContainer),
           document.getElementById('app')
         );
     },

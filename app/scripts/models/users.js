@@ -11,6 +11,17 @@ var User = Backbone.Model.extend({
         localStorage.setItem('sessionId', data.sessionToken)
         localStorage.setItem('user', JSON.stringify(self.toJSON()));
       });
+    },
+    logIn: function(username, password, router){
+      var self = this;
+      var loginUrl = 'https://colinmck.herokuapp.com/' + 'login?username=' + encodeURI(username) + '&password=' + encodeURI(password);
+
+      $.ajax(loginUrl).then(function(response){
+        self.set(response)
+        self.set('password', '')
+        localStorage.setItem('user', JSON.stringify(self.toJSON()));
+        router.navigate('recipes/', {trigger: true});
+      })
     }
 });
 

@@ -10,19 +10,35 @@ var CurrentUserLogin = React.createClass({
         password: '',
       };
     },
+    handleLogIn: function(e){
+      e.preventDefault();
+
+      var username = this.state.username;
+      var password = this.state.password;
+      var router = this.props.router;
+
+
+      this.props.logIn(username, password, router);
+    },
+    handleUsernameInput: function(e){
+      this.setState({username: e.target.value})
+    },
+    handlePasswordInput: function(e){
+      this.setState({password: e.target.value})
+    },
     render: function(){
         return (
             <div className="col-md-6">
               <h2>Login Here!</h2>
-              <form id="login">
+              <form onSubmit={this.handleLogIn} id="login">
                 <div className="form-group">
                   <label forHTML="email-login">Email address</label>
-                  <input className="form-control" name="email" id="email-login" type="email" placeholder="email" />
+                  <input onChange={this.handleUsernameInput} value={this.state.username} className="form-control" name="email" id="email-login" type="email" placeholder="email" />
                 </div>
 
                 <div className="form-group">
                   <label forHTML="password-login">Password</label>
-                  <input className="form-control" name="password" id="password-login" type="password" placeholder="Password Please" />
+                  <input onChange={this.handlePasswordInput} value={this.state.password} className="form-control" name="password" id="password-login" type="password" placeholder="Password Please" />
                 </div>
 
                 <button className="btn btn-primary" type="submit">Let the Recipes Begin!</button>
@@ -98,8 +114,9 @@ var LoginContainer = React.createClass({
         user: new User()
       }
     },
-    handleLogin: function(){
-
+    logIn: function(username, password, router){
+      this.state.user.set({username: username, password: password});
+      this.state.user.logIn(username, password, router)
     },
     handleSignUp: function(username, password){
       this.state.user.set({username: username, password: password});
@@ -113,7 +130,7 @@ var LoginContainer = React.createClass({
           <div className="container">
             <div className="row">
 
-              <CurrentUserLogin handleLogin={this.handleLogin} />
+              <CurrentUserLogin logIn={this.logIn} router={this.props.router} />
               <NewUserCreate handleSignUp={this.handleSignUp} />
 
             </div>

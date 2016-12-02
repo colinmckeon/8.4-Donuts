@@ -4,7 +4,6 @@ var Backbone = require('backbone');
 //Local Data being brought in
 var recipeItems = require('../data/data.js').recipeItems;
 var recipe = require('../data/data.js').recipe;
-var TemplateContainer =  require('./templates/template.jsx').TemplateContainer;
 
 var AdjustRecipe = React.createClass({
     getInitialState: function(){
@@ -88,7 +87,7 @@ var AdjustRecipeContainer = React.createClass({
       console.log('re-render');
         return(
         <div>
-          <TemplateContainer />
+
           <div className="container">
             <div className="row">
               <div className="col-md-6 col-md-offset-3">
