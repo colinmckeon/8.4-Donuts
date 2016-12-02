@@ -3,7 +3,7 @@ var Backbone = require('backbone');
 
 //Local Data being brought in
 var recipeItems = require('../data/data.js').recipeItems;
-var recipe = require('../data/data.js').recipe;
+var Recipe = require('../models/recipe.js').Recipe;
 
 var AdjustRecipe = React.createClass({
     getInitialState: function(){
@@ -30,9 +30,9 @@ var AdjustRecipe = React.createClass({
         return (
           <div className="recipe-items" key={item.id + index}>
                 <label><input type="checkbox" />&nbsp;
-                  {item.quantity}&nbsp;
-                  {item.measurementtype}&nbsp;
-                  {item.title}
+                  {item.get('quantity')} &nbsp;
+                  {item.get('measurementtype')} &nbsp;
+                  {item.get('title')}
                 </label>
                 <br/>
           </div>
@@ -75,8 +75,15 @@ var AdjustRecipeContainer = React.createClass({
     getInitialState: function(){
         return{
           ingredients: recipeItems,
-          recipe: recipe
+          recipe: new Recipe()
         }
+    },
+    componentWillMount: function(){
+      var self = this;
+      this.state.recipe.set('objectId', this.props.objectId);
+      this.state.recipe.fetch().then(function(){
+        self.setState({recipe: self.state.recipe})
+      });
     },
     adjustRecipe: function(ingredients, servings){
       var recipe = this.state.recipe;
@@ -84,7 +91,7 @@ var AdjustRecipeContainer = React.createClass({
       this.setState({recipe: recipe});
     },
     render: function(){
-      console.log('re-render');
+      console.log(this.state.recipe);
         return(
         <div>
 
@@ -94,8 +101,8 @@ var AdjustRecipeContainer = React.createClass({
                 <div className="recipe-container">
 
                     <AdjustRecipe
-                      servings={this.state.recipe.servings}
-                      ingredientsList={this.state.ingredients}
+                      servings={this.state.recipe.get('servings')}
+                      ingredientsList={this.state.recipe.get('ingredients')}
                       recipe={this.state.recipe}
                       adjustRecipe={this.adjustRecipe}
                       />

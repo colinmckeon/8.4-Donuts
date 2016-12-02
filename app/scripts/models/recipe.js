@@ -6,10 +6,12 @@ var ParseModel = Backbone.Model.extend({
 });
 
 var ParseCollection = Backbone.Collection.extend({
-
+  parse: function(data){
+    return data.results;
+  }
 });
 
-var Ingredient = ParseModel.extend({
+var Ingredient = Backbone.Model.extend({
     defaults: {
       title: '',
       quantity: 0,
@@ -17,7 +19,7 @@ var Ingredient = ParseModel.extend({
     }
 });
 
-var IngredientCollection = ParseCollection.extend({
+var IngredientCollection = Backbone.Collection.extend({
     model: Ingredient
 });
 
@@ -27,6 +29,17 @@ var Recipe = ParseModel.extend({
     ingredients: new IngredientCollection()
   },
   urlRoot: 'https://colinmck.herokuapp.com/classes/Recipe',
+
+  parse: function(data){
+    data.ingredients = new IngredientCollection(data.ingredients);
+    return data;
+  },
+  save: function(key, val, options){
+    // Convert ingredients collection to array for parse
+    this.set('ingredients', this.get('ingredients').toJSON());
+
+    return ParseModel.prototype.save.apply(this, arguments);
+  },
 });
 
 var RecipeCollection = ParseCollection.extend({
@@ -35,5 +48,6 @@ var RecipeCollection = ParseCollection.extend({
 });
 
 module.exports = {
-    RecipeCollection: RecipeCollection
+    RecipeCollection: RecipeCollection,
+    Recipe: Recipe
 };
