@@ -28,8 +28,8 @@ var AdjustRecipe = React.createClass({
     render: function(){
       var recipeHtml = this.props.ingredientsList.map(function(item, index){
         return (
-          <div className="recipe-items" key={item.id + index}>
-                <label><input type="checkbox" />&nbsp;
+          <div className="recipe-items">
+                <label key={item.id + index}><input type="checkbox" />&nbsp;
                   {item.get('quantity')} &nbsp;
                   {item.get('measurementtype')} &nbsp;
                   {item.get('title')}
@@ -41,15 +41,13 @@ var AdjustRecipe = React.createClass({
         return(
           <div>
               <div className="adjustrecipe-header">
+                <br/>
                   <div className="servings">
                       <span>Makes</span>
                       <input onChange={this.adjustServings} id="servings-input" type="text" name="servings-input" placeholder={this.props.recipe.servings}/>
                       <span>servings.</span>
                   </div>
-                  <div className="radio-button-container">
-                      <input type="radio" value="US" defaultChecked /> US
-                      <input type="radio" value="US" /> Metric
-                  </div>
+
                   <div className="adjustrecipe-button-container">
                       <input onClick={this.adjustRecipe} className="btn btn-info" type="submit" value="Adjust Recipe" />
                   </div>

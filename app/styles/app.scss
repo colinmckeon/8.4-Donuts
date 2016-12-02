@@ -22,6 +22,10 @@ img {
 #recipeListTitle{
   display: inline-block;
 }
+.addNewRecipeButton{
+  float: right;
+  margin-top: 26px;
+}
 
 //
 //RECIPE QTY SCREEN
@@ -54,6 +58,13 @@ img {
 //
 //RECIPE FORM SCREEN
 //
+#basicInfoTitle{
+  display: inline-block;
+}
+.backToRecipesButton{
+  float: right;
+  margin-top: 20px;
+}
 .cook-time-container{
   text-align: center;
 }

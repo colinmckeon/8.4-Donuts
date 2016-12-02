@@ -32,14 +32,14 @@ var AppRouter = Backbone.Router.extend({
 
     recipeList: function(){
         ReactDOM.render(
-          React.createElement(RecipeContainer),
+          React.createElement(RecipeContainer, {router: this}),
           document.getElementById('app')
         );
     },
 
     addRecipe: function(){
         ReactDOM.render(
-          React.createElement(RecipeFormContainer),
+          React.createElement(RecipeFormContainer, {router: this}),
           document.getElementById('app')
         );
     },

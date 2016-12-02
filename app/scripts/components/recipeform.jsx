@@ -22,10 +22,14 @@ var RecipeForm = React.createClass({
       console.log(this.state.collection);
       console.log(newRecipe);
     },
+    backToRecipes: function(){
+      this.props.router.navigate('recipes/', {trigger: true});
+    },
     render: function(){
         return (
           <div className="form-container">
-              <h3>Basic Info</h3>
+              <h3 id="basicInfoTitle">Basic Info</h3>
+              <button onClick={this.backToRecipes} className="btn btn-info backToRecipesButton" type="submit">Go Back To Recipes</button>
               <hr />
               <form onSubmit={this.submitRecipe}>
               <div className="well">
@@ -95,8 +99,12 @@ var RecipeFormContainer = React.createClass({
             <div className="row">
               <div className="col-md-6 col-md-offset-3">
 
-                
-                  <RecipeForm submitRecipe={this.submitRecipe} recipe={this.state.recipeCollection} />
+
+                  <RecipeForm
+                    submitRecipe={this.submitRecipe}
+                    recipe={this.state.recipeCollection}
+                    router={this.props.router}
+                    />
 
               </div>
             </div>

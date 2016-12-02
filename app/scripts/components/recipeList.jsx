@@ -9,12 +9,17 @@ var ListItem = React.createClass({
       return(
         <div>
           <a href={'#recipes/' + recipe.get('objectId') + '/'} className="list-group-item">{recipe.get('title')}</a>
+          <button className="btn btn-success" type="submit">Edit Recipe</button>
+          <hr />
         </div>
       );
     }
 });
 
 var List = React.createClass({
+  handleAddNewRecipe: function(){
+    this.props.router.navigate('recipes/add/', {trigger: true});
+  },
   render: function (){
     console.log(this.props.recipes);
     var recipeList = this.props.recipes.map(function(recipe){
@@ -27,7 +32,8 @@ var List = React.createClass({
 
           <div>
             <h1 id="recipeListTitle">My Recipes</h1>
-            <button className="btn btn-success" type="submit">Add New Recipe</button>
+            <button onClick={this.handleAddNewRecipe} className="btn btn-info addNewRecipeButton" type="submit">Add New Recipe</button>
+            <hr/>
           </div>
 
           <div>
@@ -57,7 +63,10 @@ var RecipeContainer = React.createClass({
     render: function(){
       return(
       <div className="container">
-        <List recipes={this.state.recipeCollection}/>
+        <List
+          recipes={this.state.recipeCollection}
+          router={this.props.router}
+          />
       </div>
     );
     }
